@@ -1,4 +1,4 @@
-module github.com/gamedev-embers/tinylibs
+module github.com/gamedev-embers/libserver
 
 go 1.20
 
