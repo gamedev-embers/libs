@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/gamedev-embers/tinylibs/hotconfig/blocks"
+	"github.com/gamedev-embers/libserver/hotconfig/blocks"
 	"github.com/stretchr/testify/assert"
 )
 
