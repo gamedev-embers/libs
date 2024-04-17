@@ -17,7 +17,15 @@ type HotConfig[T any] struct {
 	value  atomic.Pointer[T]
 }
 
-func New[T any](loader loader[T]) (*HotConfig[T], error) {
+func New[T any](loader loader[T]) *HotConfig[T] {
+	obj, err := NewWithError(loader)
+	if err != nil {
+		panic(err)
+	}
+	return obj
+}
+
+func NewWithError[T any](loader loader[T]) (*HotConfig[T], error) {
 	obj := HotConfig[T]{loader: loader}
 	if err := obj.init(); err != nil {
 		return nil, err

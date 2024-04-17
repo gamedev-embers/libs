@@ -31,8 +31,7 @@ func TestHotObject(t *testing.T) {
 	t.Run("Load", func(t *testing.T) {
 		assert := assert.New(t)
 		loader := loaderFunc()
-		obj, err := New(loader)
-		assert.NoError(err)
+		obj := New(loader)
 		assert.Equal(1, obj.Load().Gate.Ports["tcp"])
 		assert.Equal(1, obj.Load().Gate.Ports["tcp"])
 		assert.Equal(1, obj.Load().Gate.Ports["tcp"])
@@ -41,8 +40,7 @@ func TestHotObject(t *testing.T) {
 	t.Run("Reload", func(t *testing.T) {
 		assert := assert.New(t)
 		loader := loaderFunc()
-		obj, err := New(loader)
-		assert.NoError(err)
+		obj := New(loader)
 		v := obj.Load()
 		assert.Equal(1, v.Gate.Ports["tcp"])
 
@@ -76,16 +74,16 @@ func TestHotObject_Errors(t *testing.T) {
 
 	t.Run("New", func(t *testing.T) {
 		assert := assert.New(t)
-		obj, err := New(loaderBad)
-		assert.Nil(obj)
-		assert.Equal(ErrForTest, err)
+		assert.PanicsWithError(ErrForTest.Error(), func() {
+			obj := New(loaderBad)
+			_ = obj
+		})
+		// assert.Equal(ErrForTest, err)
 	})
 
 	t.Run("SetLoader", func(t *testing.T) {
 		assert := assert.New(t)
-		obj, err := New(loaderGood)
-		assert.NoError(err)
-
+		obj := New(loaderGood)
 		v := obj.Load()
 		assert.NotNil(v)
 	})
