@@ -1,4 +1,4 @@
-package weights
+package loot
 
 import "fmt"
 

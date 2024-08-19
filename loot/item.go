@@ -1,4 +1,4 @@
-package weights
+package loot
 
 type Item interface {
 	comparable
